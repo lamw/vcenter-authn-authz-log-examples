@@ -389,7 +389,7 @@ Log Location: /var/log/vmware/vpx/vpxd.log (must enable remote syslog, see [here
 
 * **vSphere Permission Created**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:23:19.148Z [tomcat-exec-291  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Added access control [ Principal=Name=VGHETTO.LOCAL\william,isGroup=false,roles=[-1],propogating=true ] to document urn:vmomi:Folder:group-d1:cd607b82-913a-4d82-9c00-875829f5afb7
@@ -397,7 +397,7 @@ Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
 
 * **vSphere Permission Updated**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:23:37.988Z [tomcat-exec-75  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Added access control [ Principal=Name=VGHETTO.LOCAL\william,isGroup=false,roles=[-2],propogating=true ] to document urn:vmomi:Folder:group-d1:cd607b82-913a-4d82-9c00-875829f5afb7
@@ -405,7 +405,7 @@ Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
 
 * **vSphere Permission Deleted**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:23:59.911Z [tomcat-exec-108  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Remove access control for principals [ Name=VGHETTO.LOCAL\william,isGroup=false ] on document urn:vmomi:Folder:group-d1:cd607b82-913a-4d82-9c00-875829f5afb7
@@ -413,7 +413,7 @@ Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
 
 * **vSphere Role Creation**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:25:21.154Z [tomcat-exec-282  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Add role Id=429606320,Name=YouShouldNotBeAllowedToLoginRole,Description=,Tenant=Privileges=[System.Read, System.View, System.Anonymous]
@@ -421,7 +421,7 @@ Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
 
 * **vSphere Role Update**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:25:47.999Z [tomcat-exec-16  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Update role Id=429606320,Name=YouShouldNotBeAllowedToLoginRole,Description=,Tenant=Privileges=[System.Read, System.View, System.Anonymous, Alarm.Acknowledge, Alarm.Create, Alarm.DisableActions, Alarm.Edit, Alarm.Delete, Alarm.SetStatus]
@@ -429,7 +429,7 @@ Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
 
 * **vSphere Role Deletion**
 
-Log Location: /var/log/vmware/vpxd-svcs/vpxd-svcs.log
+Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:26:07.531Z [tomcat-exec-298  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Delete role 429606320
