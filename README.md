@@ -20,6 +20,7 @@ For more information and context, please refer to this blog post [here](http://w
     * SSO Group Creation
     * SSO Group Assignment
     * SSO Group Deletion
+    * SSO Password policy update
   * vCenter Server Activities
     * Successful vCenter Server Login
     * Successful vCenter Server Logout
@@ -46,6 +47,7 @@ For more information and context, please refer to this blog post [here](http://w
     * SSO Group Creation
     * SSO Group Assignment
     * SSO Group Deletion
+    * SSO Password policy update
   * vCenter Server Activities
     * Successful vCenter Server Login
     * Successful vCenter Server Logout
@@ -185,6 +187,14 @@ Log Location: /var/log/vmware/sso/vmware-sts-idmd.log
 
 ```code
 [2017-06-16T22:23:26.941Z pool-9-thread-4 opId=GroupsActionCommand-apply-110158-ngc INFO  com.vmware.identity.admin.vlsi.PrincipalManagementServiceImpl] [User {Name: Administrator, Domain: VSPHERE.LOCAL} with role 'Administrator'] Removing principals from local group 'vGhetoSSOGroup'
+```
+
+* **SSO Password policy update**
+
+Log Location: /var/log/vmware/sso/ssoAdminServer.log
+
+```code
+[2017-06-19T13:28:30.437Z pool-9-thread-4 opId=SsoUpdatePasswordPoliciesViewMediator-apply-120658-ngc INFO  com.vmware.identity.admin.vlsi.PasswordPolicyServiceImpl] [User {Name: Administrator, Domain: VSPHERE.LOCAL} with role 'Administrator'] Updating local password policy
 ```
 
 ### vCenter Server Activitites
@@ -433,6 +443,14 @@ Log Location: /var/log/vmware/invsvc/authz-event.log
 
 ```code
 2017-06-16T16:26:07.531Z [tomcat-exec-298  INFO  AuthorizationService.AuditLog  opId=] Action performed by principal(name=VGHETTO.LOCAL\Administrator,isGroup=false):Delete role 429606320
+```
+
+* **SSO Password policy update**
+
+Log Location: /var/log/vmware/sso/ssoAdminServer.log
+
+```code
+[2017-06-19T13:26:56.505Z pool-3-thread-3 opId=d55c6ca3-a2b2-41e6-b1a7-e54f2b92d939 INFO  com.vmware.identity.admin.vlsi.PasswordPolicyServiceImpl] [User {Name: Administrator, Domain: VGHETTO.LOCAL} with role 'Administrator'] Updating local password policy
 ```
 
 ## Aditional Resources
