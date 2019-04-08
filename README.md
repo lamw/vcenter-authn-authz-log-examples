@@ -1,8 +1,38 @@
 # Log examples of vCenter Server Authentication & Authorization activities
 
-For more information and context, please refer to this blog post [here](http://www.virtuallyghetto.com/2017/06/auditinglogging-vcenter-server-authentication-authorization-activities.html).
+For more information and context, please refer to this blog post [here](http://www.virtuallyghetto.com/2019/04/enhanced-vcenter-server-audit-event-logging-in-vsphere-6-7-update-2.html).
 
 ## Table of Contents
+
+* [vSphere 6.7 Update 2](#vsphere-67-update-2)
+  * Single Sign-On Activities
+    * Successful SSO Login
+    * Successful SSO Logout
+    * Successful SSO Active Directory Login
+    * Successful SSO Active Directory Logout
+    * Failed SSO Login
+    * Failed SSO Login (User not found)
+    * Failed SSO Active Directory Login
+    * Failed SSO Active Directory Login (User not found)
+    * SSO User Creation
+    * SSO User Password Change
+    * SSO User Deletion
+    * SSO Group Creation
+    * SSO Group Assignment
+    * SSO Group Deletion
+    * SSO Password policy update
+  * vCenter Server Activities
+    * Successful vCenter Server Login
+    * Successful vCenter Server Logout
+    * vSphere Permission Created
+    * vSphere Permission Updated
+    * vSphere Permission Deleted
+    * vSphere Global Permission Created
+    * vSphere Global Permission Updated
+    * vSphere Global Permission Deleted
+    * vSphere Role Creation
+    * vSphere Role Update
+    * vSphere Role Deletion
 
 * [vSphere 6.5](#vsphere-65)
   * Single Sign-On Activities
@@ -57,8 +87,200 @@ For more information and context, please refer to this blog post [here](http://w
     * vSphere Role Creation
     * vSphere Role Update
     * vSphere Role Deletion
+
 * [Additional Resources](#additional-resources)
 
+## vSphere 6.7 Update 2
+
+### Single Sign-On Activities
+
+* **Successful SSO Login**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:08:50.250Z {"user":"administrator@vsphere.local","client":"192.168.30.182","timestamp":"04/06/2019 12:08:50 UTC","description":"User administrator@vsphere.local@192.168.30.182 logged in with response code 200","eventSeverity":"INFO","type":"com.vmware.sso.LoginSuccess"}
+```
+
+* **Successful SSO Logout**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:08:44.813Z {"user":"Administrator@VSPHERE.LOCAL","client":"192.168.30.182","timestamp":"04/06/2019 12:08:44 UTC","description":"User Administrator@VSPHERE.LOCAL@192.168.30.182 logged out","eventSeverity":"INFO","type":"com.vmware.sso.Logout"}
+```
+
+* **Successful SSO Active Directory Login**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:51:56.988Z {"user":"william@PRIMP-INDUSTRIES.COM","client":"192.168.30.182","timestamp":"04/06/2019 12:51:56 UTC","description":"User william@PRIMP-INDUSTRIES.COM@192.168.30.182 logged in with response code 200","eventSeverity":"INFO","type":"com.vmware.sso.LoginSuccess"}
+```
+
+* **Successful SSO Active Directory Logout**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:52:23.974Z {"user":"william@PRIMP-INDUSTRIES.COM","client":"192.168.30.182","timestamp":"04/06/2019 12:52:23 UTC","description":"User william@PRIMP-INDUSTRIES.COM@192.168.30.182 logged out","eventSeverity":"INFO","type":"com.vmware.sso.Logout"}
+```
+
+* **Failed SSO Login**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:47:50.424Z {"user":"administrator@vsphere.local","client":"192.168.30.182","timestamp":"04/06/2019 12:47:50 UTC","description":"User administrator@vsphere.local@192.168.30.182 failed to log in with response code 401","eventSeverity":"INFO","type":"com.vmware.sso.LoginFailure"}
+```
+
+* **Failed SSO Login (User not found)**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:48:29.060Z {"user":"rogue-user@vsphere.local","client":"192.168.30.182","timestamp":"04/06/2019 12:48:29 UTC","description":"User rogue-user@vsphere.local@192.168.30.182 failed to log in with response code 401","eventSeverity":"INFO","type":"com.vmware.sso.LoginFailure"}
+```
+
+* **Failed SSO Active Directory Login**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:53:05.908Z {"user":"william@primp-industries.com","client":"192.168.30.182","timestamp":"04/06/2019 12:53:05 UTC","description":"User william@primp-industries.com@192.168.30.182 failed to log in with response code 401","eventSeverity":"INFO","type":"com.vmware.sso.LoginFailure"}
+```
+
+* **Failed SSO Active Directory Login (User not found)**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:52:46.170Z {"user":"rogue-ad-user@primp-industries.com","client":"192.168.30.182","timestamp":"04/06/2019 12:52:46 UTC","description":"User rogue-ad-user@primp-industries.com@192.168.30.182 failed to log in with response code 401","eventSeverity":"INFO","type":"com.vmware.sso.LoginFailure"}
+```
+
+* **SSO User Creation**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:37:29.992Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:37:29 UTC","description":"Creating local person user 'lamw' with details ('Adding Local SSO User','lamw@virtuallyghetto.com','William','Lam','lamw@vsphere.local')","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"}
+```
+
+* **SSO User Password Change**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:41:52.190Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:41:52 UTC","description":"Resetting local person user 'lamw' password","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"}
+```
+
+* **SSO User Deletion**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:42:15.724Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:42:15 UTC","description":"Deleting principal 'lamw'","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"}
+```
+
+* **SSO Group Creation**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:37:45.560Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:37:45 UTC","description":"Creating local group 'vGhetto' with details ('Adding Local SSO Group')","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"}
+```
+
+* **SSO Group Assignment**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:41:12.939Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:41:12 UTC","description":"Adding users to local group 'virtuallyGhetto'","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"
+```
+
+* **SSO Group Deletion**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:40:24.037Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:40:24 UTC","description":"Deleting principal 'virtuallyGhetto'","eventSeverity":"INFO","type":"com.vmware.sso.PrincipalManagement"}
+```
+
+* **SSO Password policy update**
+
+Log Location: /var/log/audit/sso-events/audit_events.log
+
+```code
+2019-04-06T12:36:52.811Z {"user":"Administrator@VSPHERE.LOCAL","client":"","timestamp":"04/06/2019 12:36:52 UTC","description":"Updating local password policy","eventSeverity":"INFO","type":"com.vmware.sso.PasswordPolicy"}
+```
+
+### vCenter Server Activities
+
+* **Successful vCenter Server Login**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](vc-login-67u2.png)
+
+* **Successful vCenter Server Logout**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](vc-logout-67u2.png)
+
+* **vSphere Permission Created**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](permission-created-67u2.png)
+
+* **vSphere Permission Updated**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](permission-update-67u2.png)
+
+* **vSphere Permission Deleted**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](permission-remove-67u2.png)
+
+* **vSphere Global Permission Created**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](global-permission-created-67u2.png)
+
+* **vSphere Global Permission Updated**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](global-permission-update-67u2.png)
+
+* **vSphere Global Permission Deleted**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](global-permission-remove-67u2.png)
+
+* **vSphere Role Creation**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](role-create-67u2.png)
+
+* **vSphere Role Update**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](role-update-67u2.png)
+
+* **vSphere Role Deletion**
+
+Log Location: (included as part of the VC Event Syslog stream)
+
+![](role-remove-67u2.png)
 
 ## vSphere 6.5
 
@@ -197,7 +419,7 @@ Log Location: /var/log/vmware/sso/ssoAdminServer.log
 [2017-06-19T13:28:30.437Z pool-9-thread-4 opId=SsoUpdatePasswordPoliciesViewMediator-apply-120658-ngc INFO  com.vmware.identity.admin.vlsi.PasswordPolicyServiceImpl] [User {Name: Administrator, Domain: VSPHERE.LOCAL} with role 'Administrator'] Updating local password policy
 ```
 
-### vCenter Server Activitites
+### vCenter Server Activities
 
 * **Successful vCenter Server Login**
 
@@ -383,7 +605,7 @@ Log Location: /var/log/vmware/sso/vmware-sts-idmd.log
 [2017-06-16T15:31:24.999Z pool-3-thread-1 opId=7b4bf623-9b06-41c1-9661-e16f90e1fe2d INFO  com.vmware.identity.admin.vlsi.PrincipalManagementServiceImpl] [User {Name: Administrator, Domain: VGHETTO.LOCAL} with role 'Administrator'] Deleting principal 'vGhetto-Group'
 ```
 
-### vCenter Server Activitites
+### vCenter Server Activities
 
 * **Successful vCenter Server Login**
 
